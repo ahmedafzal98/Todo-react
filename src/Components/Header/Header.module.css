@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: auto;
+}
+
+.heading {
+    /* text-align: center; */
+    margin-top: 5%;
+}
+
+span {
+    color: black;
+    font-size: 26px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.search_box {
+    width: 750px;
+    height: 38px;
+    margin-top: 20px;
+}
+
+#search {
+    width: 595px;
+    height: 38px;
+    padding-left: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #6C63FF;
+}
+.search_box img {
+    position: absolute;
+    right: 37%;
+    margin-top: 10px;
+}
