@@ -5,18 +5,22 @@ import trash from '../../assets/icons/delete.svg'
 import check from '../../assets/icons/check.svg'
 import { useContext } from 'react'
 import { NoteContext } from '../../context/NoteContext'
+import EmptyList from '../EmptyList/EmptyList'
 
 function Notes() {
 
-    // const notes = ["note1", "note2", "note3"]
-    const { notes } = useContext(NoteContext)
+    const { notes , filteredNotes } = useContext(NoteContext)
 
-    console.log(notes);
+    if (notes.length === 0 && filteredNotes.length === 0) {
+        
+        return <EmptyList />
+    }
+    const updatedNotes = filteredNotes.length > 0 ? filteredNotes : notes
 
     return (
         <div className={style.notes}>
             <ul>
-                {notes.map((note) => {
+                 {updatedNotes.map((note) => {
 
                     return (
                         <>

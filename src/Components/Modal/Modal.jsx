@@ -3,20 +3,18 @@ import style from './Modal.module.css'
 
 import {NoteContext} from '../../context/NoteContext'
 
-const data = []
-
 function Modal(props) {
-
+    
     const [newNote, setNewNote] = useState("")
-    const {setNotes} = useContext(NoteContext)
-
-
+   const {setNotes} = useContext(NoteContext)
+   
     function handleCancel() {
         props.isOpen(false)
     }
-    function handleApply(note) {
+    function handleApply() {
         setNotes(prevNotes => [...prevNotes , newNote])
         setNewNote("")
+        handleCancel()
     }
     function handleChange(event) {
         setNewNote(event.target.value)
