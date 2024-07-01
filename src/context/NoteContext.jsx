@@ -1,9 +1,10 @@
 import { createContext } from "react";
 
 export const NoteContext = createContext({
-    notes:[],
-    filteredNotes:[],
-    setNotes : () =>{},
-    setFilteredNotes: () =>{}
-})
-
+  notes: [],
+  filteredNotes: [],
+  selectedNote: { note: "", index: null },
+  setSelectedNote: () => {},
+  setNotes: () => {},
+  setFilteredNotes: () => {},
+});

@@ -10,6 +10,10 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([]);
+  const [selectedNote, setSelectedNote] = useState({
+    note: "",
+    index: null,
+  });
 
   function checkModal(isOpen) {
     setIsOpen(isOpen);
@@ -17,14 +21,20 @@ function App() {
   return (
     <div className="container">
       <NoteContext.Provider
-        value={{ notes, setNotes, filteredNotes, setFilteredNotes }}
+        value={{
+          notes,
+          setNotes,
+          filteredNotes,
+          setFilteredNotes,
+          selectedNote,
+          setSelectedNote,
+        }}
       >
         <Header />
-        <Notes />
+        <Notes onEdit={checkModal} />
         {isOpen && <Modal isOpen={checkModal} />}
+        <Button onOpen={checkModal} />
       </NoteContext.Provider>
-
-      <Button onOpen={checkModal} />
     </div>
   );
 }
