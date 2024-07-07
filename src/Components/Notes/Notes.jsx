@@ -3,21 +3,21 @@ import uncheck from "../../assets/icons/Rectangle.svg";
 import edit from "../../assets/icons/edit.svg";
 import trash from "../../assets/icons/delete.svg";
 import check from "../../assets/icons/check.svg";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { NoteContext } from "../../context/NoteContext";
 import EmptyList from "../EmptyList/EmptyList";
 
 function Notes(prop) {
+
   const {
     setNotes,
     setSelectedNote,
     notes,
     filteredNotes,
     setFilteredNotes,
-    selectedNote,
   } = useContext(NoteContext);
-  const [isCheck, setIsCheck] = useState(false);
-  const [disabledIndex, setDisabledindex] = useState(-1);
+
+  console.log(notes);
 
   if (notes.length === 0 && filteredNotes.length === 0) {
     return <EmptyList />;
@@ -39,40 +39,37 @@ function Notes(prop) {
     setNotes(newNotes);
   }
   function handleCheckClick(note, index) {
-    console.log({ selectedNote });
-    setDisabledindex(index);
-    setIsCheck(!isCheck);
-    // setNotes(prevNotes =>
-    //   prevNotes.map((note, i) =>
-    //     i === index ? { ...note, isChecked: !note.isChecked } : note
-    //   )
-    // );
+    setNotes(prevNotes =>
+      prevNotes.map((note, i) =>
+        i === index ? { ...note, isChecked: !note.isChecked } : note
+      )
+    );
   }
   return (
     <div className={style.notes}>
       <ul>
-        {updatedNotes.map((note, index) => (
+        {updatedNotes.map((notes, index) => (
           <div key={index}>
             <li>
               <div
                 className={`${style.note} ${
-                  index === disabledIndex && isCheck ? style.disabled : ""
+                  notes.isChecked ? style.disabled : ""
                 }`}
-                onClick={() => handleCheckClick(note, index)}
+                onClick={() => handleCheckClick(notes.note, index)}
               >
                 <img src={uncheck} alt="Uncheck" />
-                {isCheck && index === disabledIndex && (
+                {notes.isChecked && (
                   <img className={style.check} src={check} alt="Check" />
                 )}
-                <span>{note}</span>
+                <span>{notes.note}</span>
               </div>
               <div
                 className={`${style.options} ${
-                  isCheck ? style.options_disabled : ""
+                  notes.isChecked ? style.options_disabled : ""
                 }`}
               >
                 <img
-                  onClick={() => handleEditClick(note, index)}
+                  onClick={() => handleEditClick(notes.note, index)}
                   src={edit}
                   alt="Edit Icon"
                 />
