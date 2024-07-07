@@ -38,7 +38,7 @@ function Modal(props) {
           type="text"
           placeholder="Enter New Note.."
           onChange={handleChange}
-          value={newNote.note}
+          value={newNote.note || ""}
           id={style.add_note_input}
         />
         <div className={style.buttons}>
