@@ -3,7 +3,7 @@ import uncheck from "../../assets/icons/Rectangle.svg";
 import edit from "../../assets/icons/edit.svg";
 import trash from "../../assets/icons/delete.svg";
 import check from "../../assets/icons/check.svg";
-import { useContext} from "react";
+import { useContext } from "react";
 import { NoteContext } from "../../context/NoteContext";
 import EmptyList from "../EmptyList/EmptyList";
 
@@ -17,12 +17,9 @@ function Notes(prop) {
     setFilteredNotes,
   } = useContext(NoteContext);
 
-  console.log(notes);
-
   if (notes.length === 0 && filteredNotes.length === 0) {
     return <EmptyList />;
   }
-
   const updatedNotes = filteredNotes.length > 0 ? filteredNotes : notes;
 
   function handleEditClick(note, index) {
@@ -41,7 +38,12 @@ function Notes(prop) {
   function handleCheckClick(note, index) {
     setNotes(prevNotes =>
       prevNotes.map((note, i) =>
-        i === index ? { ...note, isChecked: !note.isChecked } : note
+        note.index === index ? { ...note, isChecked: !note.isChecked } : note
+      )
+    );
+    setFilteredNotes(prevNotes =>
+      prevNotes.map((note, i) =>
+        note.index === index ? { ...note, isChecked: !note.isChecked } : note
       )
     );
   }
@@ -52,10 +54,9 @@ function Notes(prop) {
           <div key={index}>
             <li>
               <div
-                className={`${style.note} ${
-                  notes.isChecked ? style.disabled : ""
-                }`}
-                onClick={() => handleCheckClick(notes.note, index)}
+                className={`${style.note} ${notes.isChecked ? style.disabled : ""
+                  }`}
+                onClick={() => handleCheckClick(notes.note, notes.index)}
               >
                 <img src={uncheck} alt="Uncheck" />
                 {notes.isChecked && (
@@ -64,9 +65,8 @@ function Notes(prop) {
                 <span>{notes.note}</span>
               </div>
               <div
-                className={`${style.options} ${
-                  notes.isChecked ? style.options_disabled : ""
-                }`}
+                className={`${style.options} ${notes.isChecked ? style.options_disabled : ""
+                  }`}
               >
                 <img
                   onClick={() => handleEditClick(notes.note, index)}

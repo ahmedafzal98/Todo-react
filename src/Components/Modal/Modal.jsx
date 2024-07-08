@@ -20,7 +20,7 @@ function Modal(props) {
       updatedNotes[newNote.index] = newNote.note;
       setNotes(updatedNotes);
     } else {
-      setNotes((prevNotes) => [...prevNotes, {note: newNote.note,isChecked: false}]);
+      setNotes((prevNotes) => [...prevNotes, { note: newNote.note, isChecked: false, index: notes.length + 1 }]);
     }
     setNewNote({ note: "", index: null });
     handleCancel();

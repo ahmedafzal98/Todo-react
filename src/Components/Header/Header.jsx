@@ -8,10 +8,11 @@ function Header() {
 
   function handleChange(event) {
     let filteredNotes = notes.filter((note) =>
-      note.includes(event.target.value.toLowerCase())
+      note.note.includes(event.target.value.toLowerCase())
     );
     setFilteredNotes(filteredNotes);
   }
+
   return (
     <>
       <div className={style.heading}>

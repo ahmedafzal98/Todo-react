@@ -4,7 +4,7 @@ export const NoteContext = createContext({
   notes: [],
   filteredNotes: [],
   selectedNote: { note: "", index: null },
-  setSelectedNote: () => {},
-  setNotes: () => {},
-  setFilteredNotes: () => {},
+  setSelectedNote: () => { },
+  setNotes: () => { },
+  setFilteredNotes: () => { },
 });
