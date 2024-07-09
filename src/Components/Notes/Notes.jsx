@@ -17,7 +17,6 @@ function Notes(prop) {
     setFilteredNotes,
     setSearchInputValue,
   } = useContext(NoteContext);
-  console.log(notes);
 
   if (notes.length === 0 && filteredNotes.length === 0) {
     return <EmptyList />;
@@ -25,7 +24,6 @@ function Notes(prop) {
   const updatedNotes = filteredNotes.length > 0 ? filteredNotes : notes;
 
   function handleEditClick(note, index) {
-    console.log(index);
     setSelectedNote({
       note: note,
       index: index,
