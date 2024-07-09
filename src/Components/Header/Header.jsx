@@ -4,14 +4,17 @@ import search_icon from "../../assets/icons/search.svg";
 import { NoteContext } from "../../context/NoteContext";
 
 function Header() {
-  const { notes, setFilteredNotes } = useContext(NoteContext);
+  const { notes, setFilteredNotes, setSearchInputValue, searchInputValue } = useContext(NoteContext);
 
   function handleChange(event) {
     let filteredNotes = notes.filter((note) =>
       note.note.includes(event.target.value.toLowerCase())
     );
     setFilteredNotes(filteredNotes);
+    setSearchInputValue(event.target.value)
   }
+
+
 
   return (
     <>
@@ -23,6 +26,7 @@ function Header() {
           type="text"
           placeholder="Search Note.."
           onChange={handleChange}
+          value={searchInputValue || ""}
           id={style.search}
         />
         <img src={search_icon} alt="Search" />

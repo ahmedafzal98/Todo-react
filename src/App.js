@@ -14,6 +14,7 @@ function App() {
     note: "",
     index: null,
   });
+  const [searchInputValue, setSearchInputValue] = useState("")
 
   function checkModal(isOpen) {
     setIsOpen(isOpen);
@@ -28,6 +29,8 @@ function App() {
           setFilteredNotes,
           selectedNote,
           setSelectedNote,
+          searchInputValue,
+          setSearchInputValue
         }}
       >
         <Header />

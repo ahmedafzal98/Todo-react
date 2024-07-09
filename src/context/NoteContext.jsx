@@ -7,4 +7,6 @@ export const NoteContext = createContext({
   setSelectedNote: () => { },
   setNotes: () => { },
   setFilteredNotes: () => { },
+  setSearchInputValue: () => { },
+  searchInputValue: ''
 });

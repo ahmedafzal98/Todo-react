@@ -3,8 +3,10 @@ import style from "./Modal.module.css";
 import { NoteContext } from "../../context/NoteContext";
 
 function Modal(props) {
-  const { notes, setNotes, selectedNote } = useContext(NoteContext);
+  const { notes, setNotes, setFilteredNotes, selectedNote, setSearchInputValue } = useContext(NoteContext);
   const [newNote, setNewNote] = useState({ note: "", index: null });
+
+  console.log("Selected Index", selectedNote);
 
   useEffect(() => {
     setNewNote(selectedNote);
@@ -16,13 +18,17 @@ function Modal(props) {
 
   function handleApply() {
     if (newNote.index !== null && newNote.index !== undefined) {
+      console.log("New Note Index", newNote.index);
       const updatedNotes = [...notes];
-      updatedNotes[newNote.index] = newNote.note;
+      // console.log("Updated Notes", updatedNotesnewNote.index);
+      updatedNotes[newNote.index] = { ...updatedNotes[newNote.index], note: newNote.note };
       setNotes(updatedNotes);
     } else {
-      setNotes((prevNotes) => [...prevNotes, { note: newNote.note, isChecked: false, index: notes.length + 1 }]);
+      setNotes((prevNotes) => [...prevNotes, { note: newNote.note, isChecked: false, index: notes.length }]);
     }
     setNewNote({ note: "", index: null });
+    setFilteredNotes([])
+    setSearchInputValue("")
     handleCancel();
   }
 

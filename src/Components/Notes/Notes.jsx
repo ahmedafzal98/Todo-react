@@ -15,7 +15,9 @@ function Notes(prop) {
     notes,
     filteredNotes,
     setFilteredNotes,
+    setSearchInputValue,
   } = useContext(NoteContext);
+  console.log(notes);
 
   if (notes.length === 0 && filteredNotes.length === 0) {
     return <EmptyList />;
@@ -23,6 +25,7 @@ function Notes(prop) {
   const updatedNotes = filteredNotes.length > 0 ? filteredNotes : notes;
 
   function handleEditClick(note, index) {
+    console.log(index);
     setSelectedNote({
       note: note,
       index: index,
@@ -32,8 +35,9 @@ function Notes(prop) {
   function handleDeleteClick(index) {
     const newNotes = [...notes];
     newNotes.splice(index, 1);
-    setFilteredNotes([]);
     setNotes(newNotes);
+    setFilteredNotes([]);
+    setSearchInputValue('')
   }
   function handleCheckClick(note, index) {
     setNotes(prevNotes =>
@@ -69,12 +73,12 @@ function Notes(prop) {
                   }`}
               >
                 <img
-                  onClick={() => handleEditClick(notes.note, index)}
+                  onClick={() => handleEditClick(notes.note, notes.index)}
                   src={edit}
                   alt="Edit Icon"
                 />
                 <img
-                  onClick={() => handleDeleteClick(index)}
+                  onClick={() => handleDeleteClick(notes.index)}
                   src={trash}
                   alt="Delete Icon"
                 />
