@@ -14,6 +14,7 @@ function Notes(prop) {
     setSelectedNote,
     notes,
     filteredNotes,
+    notesToRender,
     setFilteredNotes,
     setSearchInputValue,
   } = useContext(NoteContext);
