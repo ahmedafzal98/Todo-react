@@ -14,7 +14,7 @@ function Notes(prop) {
     setSelectedNote,
     notes,
     filteredNotes,
-    notesToRender,
+    selectedIndexDropdown,
     setFilteredNotes,
     setSearchInputValue,
   } = useContext(NoteContext);
@@ -22,7 +22,18 @@ function Notes(prop) {
   if (notes.length === 0 && filteredNotes.length === 0) {
     return <EmptyList />;
   }
-  const updatedNotes = filteredNotes.length > 0 ? filteredNotes : notes;
+  let updatedNotes = filteredNotes.length > 0 ? filteredNotes : notes;
+  if (filteredNotes.length > 0 && selectedIndexDropdown === 1) {
+    updatedNotes = filteredNotes.filter(note => note.isChecked);
+  } else if (filteredNotes.length > 0 && selectedIndexDropdown === 2) {
+    updatedNotes = filteredNotes.filter(note => !note.isChecked);
+  } else if (!filteredNotes.length > 0 && selectedIndexDropdown === 1) {
+    updatedNotes = notes.filter(note => note.isChecked);
+
+  } else if (!filteredNotes.length > 0 && selectedIndexDropdown === 2) {
+    updatedNotes = notes.filter(note => !note.isChecked);
+
+  }
 
   function handleEditClick(note, index) {
     setSelectedNote({

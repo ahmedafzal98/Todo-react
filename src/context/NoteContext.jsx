@@ -9,6 +9,6 @@ export const NoteContext = createContext({
   setFilteredNotes: () => { },
   setSearchInputValue: () => { },
   searchInputValue: '',
-  notesToRender: [],
-  setNotesToRender: () => { }
+  selectedIndexDropdown: null,
+  setSelectedIndexDropdown: () => { }
 });

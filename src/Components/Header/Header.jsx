@@ -8,7 +8,7 @@ import chevron_top from '../../assets/icons/chevron-top.svg'
 import chevron_down from '../../assets/icons/chevron-down.svg'
 
 function Header() {
-  const { notes, setFilteredNotes, setSearchInputValue, searchInputValue } = useContext(NoteContext);
+  const { notes, setFilteredNotes, setSearchInputValue, searchInputValue, selectedIndexDropdown } = useContext(NoteContext);
   const [isSelectClick, setIsSelectClick] = useState(false)
 
   function handleChange(event) {
@@ -18,6 +18,9 @@ function Header() {
     setFilteredNotes(filteredNotes);
     setSearchInputValue(event.target.value)
   }
+
+
+  const select = ["All", "Complete", "Incomplete"]
 
   return (
     <>
@@ -39,10 +42,10 @@ function Header() {
         <div className={style.dropdown_container}>
 
           <div onClick={() => setIsSelectClick(!isSelectClick)} className={style.select}>
-            <p>All</p>
+            <p>{select[selectedIndexDropdown]}</p>
             <img src={isSelectClick ? chevron_down : chevron_top} alt="DropDown Icon" />
           </div>
-          {isSelectClick && <DropDown />}
+          {isSelectClick && <DropDown data={select} />}
         </div>
         <div className={style.color_schema}>
           <img src={moon} alt="DropDown Icon" />

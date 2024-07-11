@@ -24,7 +24,7 @@ function Modal(props) {
   }
 
   function handleApply() {
-    if (newNote.note === undefined) {
+    if (newNote.note === undefined || newNote.note.trim() === '') {
       return setError("Please Enter Note")
     }
     if (newNote.index !== null && newNote.index !== undefined) {
