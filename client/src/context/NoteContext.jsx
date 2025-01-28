@@ -8,5 +8,7 @@ export const NoteContext = createContext({
   setNotes: () => { },
   setFilteredNotes: () => { },
   setSearchInputValue: () => { },
-  searchInputValue: ''
+  searchInputValue: '',
+  selectedIndexDropdown: null,
+  setSelectedIndexDropdown: () => { }
 });

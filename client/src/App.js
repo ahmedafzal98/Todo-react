@@ -15,6 +15,7 @@ function App() {
     index: null,
   });
   const [searchInputValue, setSearchInputValue] = useState("")
+  const [selectedIndexDropdown, setSelectedIndexDropdown] = useState(0)
 
   function checkModal(isOpen) {
     setIsOpen(isOpen);
@@ -30,7 +31,9 @@ function App() {
           selectedNote,
           setSelectedNote,
           searchInputValue,
-          setSearchInputValue
+          setSearchInputValue,
+          selectedIndexDropdown,
+          setSelectedIndexDropdown
         }}
       >
         <Header />

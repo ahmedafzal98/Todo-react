@@ -1,22 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import style from "./Header.module.css";
 import search_icon from "../../assets/icons/search.svg";
 import { NoteContext } from "../../context/NoteContext";
-import arrow_down_icon from '../../assets/icons/arrow_down_icon.svg'
-import moon from '../../assets/icons/moon.svg'
+import arrow_down_icon from "../../assets/icons/arrow_down_icon.svg";
+import moon from "../../assets/icons/moon.svg";
+import moon from "../../assets/icons/Moon.svg";
+import DropDown from "../DropDown/Dropdown";
+import chevron_top from "../../assets/icons/chevron-top.svg";
+import chevron_down from "../../assets/icons/chevron-down.svg";
 
 function Header() {
-  const { notes, setFilteredNotes, setSearchInputValue, searchInputValue } = useContext(NoteContext);
+  const {
+    notes,
+    setFilteredNotes,
+    setSearchInputValue,
+    searchInputValue,
+    selectedIndexDropdown,
+  } = useContext(NoteContext);
+  const [isSelectClick, setIsSelectClick] = useState(false);
 
   function handleChange(event) {
     let filteredNotes = notes.filter((note) =>
       note.note.includes(event.target.value.toLowerCase())
     );
     setFilteredNotes(filteredNotes);
-    setSearchInputValue(event.target.value)
+    setSearchInputValue(event.target.value);
   }
 
-
+  const select = ["All", "Complete", "Incomplete"];
 
   return (
     <>
@@ -41,7 +52,23 @@ function Header() {
         <div className={style.color_schema}>
           <img src={moon} alt="Moon" />
         </div>
+      </div>
 
+      <div className={style.dropdown_container}>
+        <div
+          onClick={() => setIsSelectClick(!isSelectClick)}
+          className={style.select}
+        >
+          <p>{select[selectedIndexDropdown]}</p>
+          <img
+            src={isSelectClick ? chevron_down : chevron_top}
+            alt="DropDown Icon"
+          />
+        </div>
+        {isSelectClick && <DropDown data={select} />}
+      </div>
+      <div className={style.color_schema}>
+        <img src={moon} alt="DropDown Icon" />
       </div>
     </>
   );
