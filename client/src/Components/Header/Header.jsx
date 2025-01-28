@@ -3,7 +3,6 @@ import style from "./Header.module.css";
 import search_icon from "../../assets/icons/search.svg";
 import { NoteContext } from "../../context/NoteContext";
 import arrow_down_icon from "../../assets/icons/arrow_down_icon.svg";
-import moon from "../../assets/icons/chevron_down.svg";
 import DropDown from "../DropDown/Dropdown";
 import chevron_top from "../../assets/icons/chevron-top.svg";
 import chevron_down from "../../assets/icons/chevron-down.svg";
@@ -49,7 +48,7 @@ function Header() {
           <img src={arrow_down_icon} alt="Arrow Down Icon" />
         </div>
         <div className={style.color_schema}>
-          <img src={moon} alt="Moon" />
+          <img src={chevron_top} alt="Moon" />
         </div>
       </div>
 
@@ -67,7 +66,7 @@ function Header() {
         {isSelectClick && <DropDown data={select} />}
       </div>
       <div className={style.color_schema}>
-        <img src={moon} alt="DropDown Icon" />
+        <img src={chevron_top} alt="DropDown Icon" />
       </div>
     </>
   );
